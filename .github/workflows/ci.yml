@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: test & mutation (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18.18', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Assert zero dependencies (no install step should be needed)
+        run: |
+          if [ -d node_modules ]; then echo "node_modules present but this project has none"; exit 1; fi
+          node -e "const p=require('./package.json');const d={...p.dependencies,...p.devDependencies};if(Object.keys(d).length){console.error('unexpected deps:',d);process.exit(1)}console.log('0 dependencies confirmed')"
+
+      - name: A signing key exists for the licence tests (ephemeral, CI-only)
+        run: |
+          mkdir -p .secrets
+          node -e "const c=require('node:crypto'),f=require('node:fs');const{publicKey,privateKey}=c.generateKeyPairSync('ed25519');f.writeFileSync('.secrets/vantage_license_ed25519.key',privateKey.export({type:'pkcs8',format:'pem'}));const spki=publicKey.export({type:'spki',format:'der'}).toString('base64');let s=f.readFileSync('src/license.js','utf8');s=s.replace(/const PUBLIC_KEY_SPKI_B64 = '[^']*';/, \"const PUBLIC_KEY_SPKI_B64 = '\"+spki+\"';\");f.writeFileSync('src/license.js',s);console.log('CI signing key wired for tests')"
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run mutation harness
+        run: npm run mutation

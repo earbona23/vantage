@@ -1,0 +1,41 @@
+{
+  "name": "vantage",
+  "version": "0.1.0",
+  "description": "Transparent external security-posture scorer for a domain. Reads public DNS, TLS and HTTP signals and produces a scored, explainable report. Zero runtime dependencies.",
+  "type": "module",
+  "bin": {
+    "vantage": "src/index.js"
+  },
+  "exports": {
+    ".": "./src/analyze.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test 'tests/**/*.test.js'",
+    "mutation": "node scripts/mutation_test.js",
+    "vantage": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "author": "earbona23",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "dns",
+    "spf",
+    "dmarc",
+    "dnssec",
+    "tls",
+    "http-security-headers",
+    "security-txt",
+    "subdomain-takeover",
+    "scorecard",
+    "attack-surface",
+    "zero-dependencies"
+  ]
+}
