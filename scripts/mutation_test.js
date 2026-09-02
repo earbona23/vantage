@@ -147,7 +147,10 @@ const MUTATIONS = [
 
 function runTests() {
   try {
-    execFileSync('node', ['--test', 'tests/**/*.test.js'], { cwd: ROOT, stdio: VERBOSE ? 'inherit' : 'pipe' });
+    const testFiles = fs.readdirSync(path.join(ROOT, 'tests'), { recursive: true })
+      .filter((f) => String(f).endsWith('.test.js'))
+      .map((f) => path.join('tests', String(f)));
+    execFileSync('node', ['--test', ...testFiles], { cwd: ROOT, stdio: VERBOSE ? 'inherit' : 'pipe' });
     return true; // suite passed
   } catch {
     return false; // suite failed (a test caught the mutant)
