@@ -1,5 +1,7 @@
 # vantage
 
+> 🔎 **Try this and the whole suite online — no install:** [consulting.arrankago.com](https://consulting.arrankago.com) · plus managed security and M365/Entra identity assessments for teams.
+
 [![CI](https://github.com/earbona23/vantage/actions/workflows/ci.yml/badge.svg)](https://github.com/earbona23/vantage/actions/workflows/ci.yml)
 [![Node 18.18+](https://img.shields.io/badge/Node-18.18%2B-339933)](https://nodejs.org/)
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)](LICENSE)
