@@ -222,6 +222,26 @@ driven in tests by injected fake DNS/HTTP/TLS clients backed by recorded
 fixtures. Every check is a pure function of a recorded evidence object, which is
 why they are trivial to test and hard to fool.
 
+## Sponsor
+
+vantage is MIT and free forever. If it catches an exposure before an attacker does,
+or earns a place in your pipeline, sponsoring keeps it maintained: bug fixes, keeping
+the takeover fingerprints and rule catalogue current, and testing against new behaviour.
+
+- **[Sponsor on GitHub](https://github.com/sponsors/earbona23)** — any amount.
+- **PRO licences** — from US$49/mo per org. Email earbona@arrankago.com.
+- **Investigations** — a domain or portfolio deep-dive with a prioritised report, from US$1,500 per investigation. Email earbona@arrankago.com.
+
+## More tools like this
+
+Part of a small suite of dependency-free security tools I maintain. Each one runs
+offline, ships its own tests, and maps its findings to a rule you can argue with.
+
+- **[entraform](https://github.com/earbona23/entraform)** — catch risky Entra/Azure changes in a Terraform plan, before apply.
+- **[revtriage](https://github.com/earbona23/revtriage)** — offline malware triage: an explainable score and a STIX bundle from a suspicious file.
+- **[entra-tripwire](https://github.com/earbona23/entra-tripwire)** — decoy identities in Entra ID that fire the moment someone touches them.
+- **[containment-cut](https://github.com/earbona23/containment-cut)** — the minimum-cost set of actions that provably severs a compromised identity, with a proof.
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE).
