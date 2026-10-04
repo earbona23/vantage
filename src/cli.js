@@ -50,7 +50,25 @@ to a rule you can read and argue with.`;
 // Pure and testable.
 export function parseArgs(argv) {
   const args = [...argv];
-  const command = args.shift() || 'help';
+  // El primer argumento se tomaba SIEMPRE como nombre de comando, asi que `vantage --help`
+  // convertia `--help` en el comando y nunca llegaba al manejador de abajo (que si existe y
+  // si mira `opts.help`). Resultado: `vantage --help` respondia
+  // `Unknown command: --help` con salida 2, mientras `vantage scan --help` funcionaba
+  // perfecto — el flag solo se parseaba si venia DESPUES de un comando.
+  // `--help` y `-h` sin comando son la convencion universal: si esta herramienta pide que
+  // confies en ella para mirar tu superficie expuesta, lo primero que escribe cualquiera
+  // tiene que funcionar.
+  const first = args[0];
+  let command;
+  if (first === '--help' || first === '-h') {
+    args.shift();
+    command = 'help';
+  } else if (first === '--version' || first === '-V') {
+    args.shift();
+    command = 'version';
+  } else {
+    command = args.shift() || 'help';
+  }
   const opts = { _: [] };
   while (args.length) {
     const a = args.shift();

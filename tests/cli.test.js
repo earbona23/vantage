@@ -102,3 +102,37 @@ test('help and version work', async () => {
   assert.equal(await main(['version'], { write: (s) => (out += s) }), 0);
   assert.match(out, /\d+\.\d+\.\d+/);
 });
+
+// ── Flags de ayuda y version como PRIMER argumento ───────────────────────────
+// `vantage --help` respondia `Unknown command: --help` y salia 2: `parseArgs` tomaba el
+// primer argumento SIEMPRE como nombre de comando, asi que el flag nunca llegaba al
+// manejador que si lo contempla. `vantage scan --help` funcionaba, lo que hacia el defecto
+// invisible para cualquiera que ya supiera los comandos — y visible para todo el que no.
+test('--help y -h como primer argumento son el comando help', () => {
+  for (const flag of ['--help', '-h']) {
+    assert.equal(parseArgs([flag]).command, 'help', `${flag} deberia resolver a help`);
+  }
+});
+
+test('--version y -V como primer argumento son el comando version', () => {
+  for (const flag of ['--version', '-V']) {
+    assert.equal(parseArgs([flag]).command, 'version', `${flag} deberia resolver a version`);
+  }
+});
+
+test('sin argumentos sigue resolviendo a help', () => {
+  assert.equal(parseArgs([]).command, 'help');
+});
+
+test('un comando real no se toca y conserva sus flags', () => {
+  const r = parseArgs(['scan', 'example.com', '--format', 'json']);
+  assert.equal(r.command, 'scan');
+  assert.equal(r.opts.format, 'json');
+});
+
+// La direccion inversa, que es la que importa: el arreglo NO debe convertir cualquier cosa
+// en help. Un comando inexistente tiene que seguir fallando con salida 2, o se perderia el
+// tercer resultado que esta herramienta predica en su propio README.
+test('un comando inexistente NO se vuelve help: debe seguir fallando', () => {
+  assert.equal(parseArgs(['comando-inexistente']).command, 'comando-inexistente');
+});
