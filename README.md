@@ -1,5 +1,9 @@
 # vantage
 
+> **Maintained.** One of the four tools here I keep current: bug fixes, dependency and
+> rule-catalogue updates, and issues answered. The rest of my tools are published as
+> snapshots and say so at the top of their README.
+
 > 🔎 **Try this and the whole suite online — no install:** [consulting.arrankago.com](https://consulting.arrankago.com) · plus managed security and M365/Entra identity assessments for teams.
 
 [![CI](https://github.com/earbona23/vantage/actions/workflows/ci.yml/badge.svg)](https://github.com/earbona23/vantage/actions/workflows/ci.yml)
@@ -84,7 +88,11 @@ $ node src/index.js scan example.com
 $ npm link && vantage scan example.com
 ```
 
-Requires Node 18.18+. No `npm install` step, because there is nothing to
+Requires Node 18.18+. Note that this tool is **not published to npm**: the package
+named `vantage` in the registry is an unrelated project by another author, so do not
+`npm install vantage` expecting this. Clone it, as above.
+
+No `npm install` step, because there is nothing to
 install.
 
 ## Usage
@@ -231,7 +239,8 @@ or earns a place in your pipeline, sponsoring keeps it maintained: bug fixes, ke
 the takeover fingerprints and rule catalogue current, and testing against new behaviour.
 
 - **[Sponsor on GitHub](https://github.com/sponsors/earbona23)** — any amount.
-- **PRO licences** — from US$49/mo per org. Email earbona@arrankago.com.
+- **PRO licences** — batch scanning, monitoring diffs and JSONL/HTML export, per
+  organisation with unlimited seats. Email earbona@arrankago.com for current pricing.
 - **Investigations** — a domain or portfolio deep-dive with a prioritised report, from US$1,500 per investigation. Email earbona@arrankago.com.
 
 ## More tools like this
