@@ -22,7 +22,7 @@
   "engines": {
     "node": ">=18.18"
   },
-  "author": "earbona23",
+  "author": "Eduard Arbona <earbona@arrankago.com>",
   "license": "MIT",
   "keywords": [
     "security",
