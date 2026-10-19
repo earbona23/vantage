@@ -1,4 +1,5 @@
 import tls from 'node:tls';
+import { guardedLookup } from './http.js';
 
 // Real TLS client. Opens a handshake to :443, reads the leaf certificate and
 // negotiated protocol, and reports whether the chain validated against the
@@ -29,6 +30,8 @@ function handshake(host, port, timeoutMs) {
         // do not reject; socket.authorized carries the verdict.
         rejectUnauthorized: false,
         timeout: timeoutMs,
+        // Same outbound address guard as the HTTPS client.
+        lookup: guardedLookup,
       },
       () => {
         const cert = socket.getPeerCertificate(false);
