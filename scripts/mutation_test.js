@@ -143,6 +143,48 @@ const MUTATIONS = [
     find: 'if (disc.evaluable === false) {',
     replace: 'if (disc.evaluable === null) {',
   },
+  {
+    name: 'address guard: IPv6 answers no longer checked',
+    file: 'src/net/http.js',
+    find: "if (net.isIPv6(ip)) return BLOCKED.check(ip, 'ipv6');",
+    replace: "if (net.isIPv6(ip)) return false;",
+  },
+  {
+    name: 'address guard: unparseable address allowed instead of refused',
+    file: 'src/net/http.js',
+    find: 'return true; // unrecognised address shape: refuse',
+    replace: 'return false; // unrecognised address shape: refuse',
+  },
+  {
+    name: 'address guard: 6to4 prefix (embeds an IPv4) dropped from the deny-list',
+    file: 'src/net/http.js',
+    find: "['2002::', 16],",
+    replace: "['2002::', 128],",
+  },
+  {
+    name: 'address guard: NAT64 prefix (embeds an IPv4) dropped from the deny-list',
+    file: 'src/net/http.js',
+    find: "['64:ff9b::', 96],",
+    replace: "['64:ff9b::', 128],",
+  },
+  {
+    name: 'address guard: lookup accepts a blocked resolution',
+    file: 'src/net/http.js',
+    find: "return callback(new Error('blocked: host resolves to a private or reserved address'));",
+    replace: "break;",
+  },
+  {
+    name: 'address guard: HTTPS client no longer resolves through the guard',
+    file: 'src/net/http.js',
+    find: '        lookup: guardedLookup,\n      },\n      (res) => {',
+    replace: '      },\n      (res) => {',
+  },
+  {
+    name: 'address guard: TLS probe no longer resolves through the guard',
+    file: 'src/net/tls.js',
+    find: '        lookup: guardedLookup,',
+    replace: '',
+  },
 ];
 
 function runTests() {
