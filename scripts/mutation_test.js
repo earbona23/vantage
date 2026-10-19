@@ -176,11 +176,8 @@ const MUTATIONS = [
   {
     name: 'address guard: HTTPS client no longer resolves through the guard',
     file: 'src/net/http.js',
-    find: '        lookup: guardedLookup,
-      },
-      (res) => {',
-    replace: '      },
-      (res) => {',
+    find: '        lookup: guardedLookup,\n      },\n      (res) => {',
+    replace: '      },\n      (res) => {',
   },
   {
     name: 'address guard: TLS probe no longer resolves through the guard',
