@@ -245,7 +245,7 @@ the takeover fingerprints and rule catalogue current, and testing against new be
   **[Buy at consulting.arrankago.com](https://consulting.arrankago.com)** or email
   earbona@arrankago.com. Those are the figures charged on that site, which is where they are
   maintained.
-- **Investigations** — a domain or portfolio deep-dive with a prioritised report, from US$1,500 per investigation. Email earbona@arrankago.com.
+- **Investigations** — a domain or portfolio deep-dive with a prioritised report, from US$6,500 per investigation. Email earbona@arrankago.com.
 
 ## More tools like this
 
