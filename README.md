@@ -240,7 +240,11 @@ the takeover fingerprints and rule catalogue current, and testing against new be
 
 - **[Sponsor on GitHub](https://github.com/sponsors/earbona23)** — any amount.
 - **PRO licences** — batch scanning, monitoring diffs and JSONL/HTML export, per
-  organisation with unlimited seats. Email earbona@arrankago.com for current pricing.
+  organisation with unlimited users in the seat band: **US$29/mo** Solo, US$99 Team (≤10),
+  US$299 Business (≤50), annual at two months free.
+  **[Buy at consulting.arrankago.com](https://consulting.arrankago.com)** or email
+  earbona@arrankago.com. Those are the figures charged on that site, which is where they are
+  maintained.
 - **Investigations** — a domain or portfolio deep-dive with a prioritised report, from US$1,500 per investigation. Email earbona@arrankago.com.
 
 ## More tools like this
